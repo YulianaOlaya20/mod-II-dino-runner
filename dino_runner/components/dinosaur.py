@@ -6,7 +6,6 @@ class Dinosaur(Sprite):
     X_POS = 80
     Y_POS =310
 
-
     def __init__(self):
         self.image = RUNNING[0] 
         self.dino_rect = self.image.get_rect()
@@ -45,5 +44,7 @@ class Dinosaur(Sprite):
     def jump(self):
         self.image = JUMPING
         self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS - 150
+        self.dino_rect.x = self.X_POS 
+        self.dino_rect.y = self.Y_POS - 100
+        
+
