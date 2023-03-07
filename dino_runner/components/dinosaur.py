@@ -5,8 +5,8 @@ from pygame.sprite import Sprite
 class Dinosaur(Sprite):
     X_POS = 80
     Y_POS = 310
-    JUMP_VEL = 10
-    Y_POS_LIMIT = 200
+    JUMP_VEL = 20
+    Y_POS_LIMIT = 150
 
     def __init__(self):
         self.image = RUNNING[0] 
