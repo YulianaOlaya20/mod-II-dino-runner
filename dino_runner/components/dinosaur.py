@@ -6,7 +6,7 @@ class Dinosaur(Sprite):
     X_POS = 80
     Y_POS = 310
     JUMP_VEL = 20
-    Y_POS_LIMIT = 110
+    Y_POS_LIMIT = 100
  
 
     def __init__(self):

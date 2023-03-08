@@ -35,7 +35,7 @@ class ObstacleManager:
                 pygame.time.delay(500)
                 game.playing = False
                 break
-
+            
 
     def draw(self, screen):
         for obstacle in self.obstacles:
