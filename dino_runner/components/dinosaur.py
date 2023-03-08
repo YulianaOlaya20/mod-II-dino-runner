@@ -7,6 +7,7 @@ class Dinosaur(Sprite):
     Y_POS = 310
     JUMP_VEL = 20
     Y_POS_LIMIT = 110
+ 
 
     def __init__(self):
         self.image = RUNNING[0] 
@@ -28,6 +29,7 @@ class Dinosaur(Sprite):
             self.dino_run = False
             self.dino_duck  = False
             self.dino_jump = True
+        
 
     def update(self, user_input):
         self.process_event(user_input)
@@ -41,8 +43,7 @@ class Dinosaur(Sprite):
         self.step_index = self.step_index + 1
         if self.step_index == 10:
             self.step_index = 0
-
-    
+        
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
     

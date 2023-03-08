@@ -4,6 +4,8 @@ from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.utils.text_utils import get_centered_message, get_score_element
+pygame.font.init()
+FONT = pygame.font.SysFont('freesansbold.ttf', 30)
 
 class Game:
     INITIAL_SPEED = 20  
@@ -21,7 +23,8 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.points = 0
-
+        self.deaths = 0
+  
 
     def show_score(self):
         self.points += 1
@@ -32,6 +35,8 @@ class Game:
         score, score_rect = get_score_element(self.points)
         self.screen.blit(score, score_rect)
 
+        death_text = FONT.render(f"Deaths: {self.deaths}", True, (255, 0, 0))
+        self.screen.blit(death_text, (10, 10))  
 
     def show_menu(self):
         self.screen.fill((255,255,255))
@@ -46,7 +51,7 @@ class Game:
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
                 self.run()
-                    
+
 
     def run(self):
         # Game loop: events - update - draw
@@ -60,14 +65,20 @@ class Game:
         self.game_speed = self.INITIAL_SPEED
         self.obstacle_manager.remove_obstacles()
 
+
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
 
+
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
+        
+        if self.obstacle_manager.check_collision(self.player):
+            self.deaths += 1  # actualizamos el contador de muertes
+            self.playing = False  # detenemos el juego
         self.obstacle_manager.update(self)
 
     def draw(self):

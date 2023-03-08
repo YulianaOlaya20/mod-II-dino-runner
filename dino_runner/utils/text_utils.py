@@ -19,3 +19,5 @@ def get_centered_message(message):
     text_rect = text.get_rect()
     text_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     return text, text_rect
+
+

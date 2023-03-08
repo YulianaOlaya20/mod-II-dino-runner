@@ -36,9 +36,17 @@ class ObstacleManager:
                 game.playing = False
                 break
 
+
     def draw(self, screen):
         for obstacle in self.obstacles:
             obstacle.draw(screen)
 
     def remove_obstacles(self):
         self.obstacles = []
+
+
+    def check_collision(self, player):
+        for obstacle in self.obstacles:
+            if player.dino_rect.colliderect(obstacle.rect):
+                return True
+        return False
