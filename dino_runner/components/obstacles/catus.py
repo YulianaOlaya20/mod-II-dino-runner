@@ -1,4 +1,4 @@
-from dino_runner.components.obstacle import Obstacle
+from dino_runner.components.obstacles import Obstacle
 
 class Cactus(Obstacle):
     
