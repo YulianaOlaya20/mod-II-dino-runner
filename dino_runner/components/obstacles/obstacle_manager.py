@@ -1,5 +1,5 @@
-import random
 import pygame
+import random
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.large_cactus import LargeCactus
 from dino_runner.components.obstacles.small_catus import SmallCactus
@@ -32,7 +32,7 @@ class ObstacleManager:
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
             if game.player.dino_rect.colliderect(obstacle.rect):
-                pygame.time.delay(500)
+                game.player.dead()
                 game.playing = False
                 break
             
@@ -43,10 +43,3 @@ class ObstacleManager:
 
     def remove_obstacles(self):
         self.obstacles = []
-
-
-    def check_collision(self, player):
-        for obstacle in self.obstacles:
-            if player.dino_rect.colliderect(obstacle.rect):
-                return True
-        return False
