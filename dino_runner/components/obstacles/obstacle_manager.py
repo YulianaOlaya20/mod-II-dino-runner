@@ -3,7 +3,7 @@ from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.large_cactus import LargeCactus
 from dino_runner.components.obstacles.small_catus import SmallCactus
 
-from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, SHIELD_TYPE
+from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, SHIELD_TYPE, HAMMER_TYPE
 
 class ObstacleManager:
 
@@ -22,6 +22,8 @@ class ObstacleManager:
             6: Bird(BIRD[0]), 
         }
 
+        obstacle = obstacles_types[random.randint(0, 6)]
+        obstacle.destroyed = False
         return obstacles_types[random.randint(0, 6)]
     
     def update(self, game):
@@ -34,6 +36,14 @@ class ObstacleManager:
                 print("Shield activated, no damage received")
             elif game.player.dino_rect.colliderect(obstacle.rect):
                 game.playing = False
+                break
+
+            elif game.player.type == HAMMER_TYPE and not obstacle.destroyed and game.player.dino_rect.colliderect(obstacle.rect):
+                obstacle.destroyed = True
+                game.score += 1
+            elif game.player.dino_rect.colliderect(obstacle.rect):
+                game.playing = False
+                breakaying = False
                 break
 
     def draw(self, screen):
