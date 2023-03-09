@@ -20,9 +20,7 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.points = 0
-        self.death_count = 0
 
-  
 
     def show_score(self):
         self.points += 1
@@ -35,8 +33,6 @@ class Game:
         self.screen.fill((255,255,255))
         text, text_rect = get_centered_message('Press any key to Start!')
         self.screen.blit(text, text_rect)
-        text, text_rect = get_centered_message(f"Death Count: {self.death_count}", y_offset = 60, font_size=20)
-        self.screen.blit(text, text_rect)
         pygame.display.update()
 
         events = pygame.event.get()
@@ -48,14 +44,11 @@ class Game:
                 self.run()
 
     def run(self):
-        # Game loop: events - update - draw
         self.playing = True
         while self.playing:
             self.events()
             self.update()
             self.draw()
-        pygame.time.delay(2000)
-        self.death_count += 1
         self.obstacle_manager.remove_obstacles()
         self.game_speed = INITIAL_GAME_SPEED
         self.points = 0

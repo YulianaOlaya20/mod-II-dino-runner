@@ -1,6 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
-from dino_runner.utils.constants import DEAD, RUNNING, DUCKING, JUMPING
+from dino_runner.utils.constants import RUNNING, DUCKING, JUMPING
 
 
 class Dinosaur(Sprite):
@@ -71,6 +71,3 @@ class Dinosaur(Sprite):
                 self.JUMP_VEL *= -1
                 self.dino_rect.y = self.Y_POS
                 self.dino_jump = False
-
-    def dead(self):
-        self.image = DEAD
