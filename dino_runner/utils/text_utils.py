@@ -3,7 +3,7 @@ import pygame
 from dino_runner.utils.constants import SCREEN_HEIGHT, SCREEN_WIDTH
 
 FONT_STYLE = 'freesansbold.ttf'
-BLACK_COLOR = (138,43,226)
+BLACK_COLOR = (000,000,000)
 
 def get_score_element(points):
     font = pygame.font.Font(FONT_STYLE, 20)
@@ -24,7 +24,7 @@ def get_score_deaths(deaths):
     font = pygame.font.Font(FONT_STYLE, 20)
     text = font.render(f"Deaths: {deaths}", True, BLACK_COLOR)
     text_rect = text.get_rect()
-    text_rect.center = (545, 345)
+    text_rect.center = (545, 345) 
     return text, text_rect
 
 

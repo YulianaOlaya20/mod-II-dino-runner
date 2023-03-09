@@ -1,6 +1,7 @@
 import pygame
 import random
 from dino_runner.utils.constants import CLOUD
+from dino_runner.utils.constants import ICON 
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
@@ -41,7 +42,12 @@ class Game:
 
     def show_menu(self):
         self.screen.fill((255,255,255))
-        text, text_rect = get_centered_message('Press any key to Start!')
+
+        wallpaper_rect = ICON.get_rect()
+        wallpaper_rect.topleft = (510, 170) 
+        self.screen.blit(ICON, wallpaper_rect)
+
+        text, text_rect = get_centered_message('START!')
         death, death_rect = get_score_deaths(self.deaths)
         self.screen.blit(death, death_rect)
         self.screen.blit(text, text_rect)
