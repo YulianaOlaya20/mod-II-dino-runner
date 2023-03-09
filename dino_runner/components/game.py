@@ -20,7 +20,7 @@ class Game:
         self.y_pos_bg = 380
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
-        self.power_up_manager = PowerUpManager
+        self.power_up_manager = PowerUpManager()
         self.points = 0
 
 
@@ -61,6 +61,11 @@ class Game:
             if event.type == pygame.QUIT:
                 self.playing = False
 
+    def update(self):
+        user_input = pygame.key.get_pressed()
+        self.player.update(user_input)
+        self.obstacle_manager.update(self)
+        self.power_up_manager.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
