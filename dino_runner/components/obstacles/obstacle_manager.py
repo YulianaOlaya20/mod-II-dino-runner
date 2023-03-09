@@ -1,10 +1,9 @@
 import random
-import pygame
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.large_cactus import LargeCactus
 from dino_runner.components.obstacles.small_catus import SmallCactus
 
-from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD
+from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, SHIELD_TYPE
 
 class ObstacleManager:
 
@@ -31,11 +30,11 @@ class ObstacleManager:
 
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
-            if game.player.dino_rect.colliderect(obstacle.rect):
-                pygame.time.delay(1000)
+            if game.player.type == SHIELD_TYPE:
+                print("Shield activated, no damage received")
+            elif game.player.dino_rect.colliderect(obstacle.rect):
                 game.playing = False
                 break
-            
 
     def draw(self, screen):
         for obstacle in self.obstacles:
