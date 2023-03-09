@@ -1,10 +1,12 @@
 import pygame
+import random
+from dino_runner.utils.constants import CLOUD
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 from dino_runner.utils.constants import BG, ICON, INITIAL_GAME_SPEED, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
-from dino_runner.utils.text_utils import get_centered_message, get_score_element
+from dino_runner.utils.text_utils import get_centered_message, get_score_element, get_score_deaths
 
 
 class Game:
@@ -22,6 +24,7 @@ class Game:
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
         self.points = 0
+        self.deaths = 0
 
 
     def show_score(self):
@@ -31,9 +34,16 @@ class Game:
         score, score_rect = get_score_element(self.points)
         self.screen.blit(score, score_rect)
 
+    def show_deaths(self):
+
+        if self.playing == False:
+            self.deaths += 1
+
     def show_menu(self):
         self.screen.fill((255,255,255))
         text, text_rect = get_centered_message('Press any key to Start!')
+        death, death_rect = get_score_deaths(self.deaths)
+        self.screen.blit(death, death_rect)
         self.screen.blit(text, text_rect)
         pygame.display.update()
 
@@ -51,6 +61,7 @@ class Game:
             self.events()
             self.update()
             self.draw()
+        pygame.time.delay(1000)
         self.obstacle_manager.remove_obstacles()
         self.power_up_manager.remove_power_ups()
         self.game_speed = INITIAL_GAME_SPEED
@@ -75,6 +86,7 @@ class Game:
         self.obstacle_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         self.show_score()
+        self.show_deaths()
         pygame.display.update()
         pygame.display.flip()
 
@@ -86,3 +98,13 @@ class Game:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
+
+    def draw_cloud(self):
+        image_width = CLOUD.get_width()
+        self.screen.blit(CLOUD, (self.x_pos_cl, self.y_pos_cl))
+        self.x_pos_cl -= self.game_speed
+        if self.x_pos_bg <= -image_width:
+            self.x_pos_cl = SCREEN_WIDTH + 1000
+            self.y_pos_cl = random.randint(50, 100)
+            self.screen.blit (CLOUD, (self.x_pos_cl, self.y_pos_cl))
+          
