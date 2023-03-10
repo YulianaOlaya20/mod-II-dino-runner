@@ -2,7 +2,7 @@ import random
 from dino_runner.components.power_ups.heart import Heart   
 from dino_runner.components.power_ups.hammer import Hammer
 from dino_runner.components.power_ups.shield import Shield
-from dino_runner.utils.constants import DEFAULT_TYPE, SHIELD, SHIELD_TYPE, HAMMER, HAMMER_TYPE, HEART
+from dino_runner.utils.constants import DEFAULT_TYPE, SHIELD, CLOUD, SHIELD_TYPE, HAMMER, HAMMER_TYPE, HEART
 
 class PowerUpManager:
     POWER_UP_PROBABILITY = 2
@@ -19,7 +19,6 @@ class PowerUpManager:
 
         if random.randint(0, 100) < self.POWER_UP_PROBABILITY:
             self.power_ups.append(Heart(HEART))
-
 
         
     def update(self, game):

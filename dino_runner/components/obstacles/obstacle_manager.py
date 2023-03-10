@@ -1,9 +1,11 @@
 import random
+
+from dino_runner.components.obstacles.cloud import Cloud
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.large_cactus import LargeCactus
 from dino_runner.components.obstacles.small_catus import SmallCactus
 
-from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, SHIELD_TYPE, HAMMER_TYPE, DEAD, HEART_TYPE
+from dino_runner.utils.constants import SMALL_CACTUS, CLOUD, LARGE_CACTUS, BIRD, SHIELD_TYPE, HAMMER_TYPE, DEAD, HEART_TYPE
 
 class ObstacleManager:
 
