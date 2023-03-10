@@ -9,7 +9,7 @@ class Dinosaur(Sprite):
     JUMP_VEL = 20
     Y_POS_LIMIT = 100
     POWER_UP_TIME = 200 
-    MAX_HAMMER_HITS = 3
+    POWER_UP_HAMMER = 0
  
 
     def __init__(self):
@@ -26,7 +26,7 @@ class Dinosaur(Sprite):
         self.jump_img = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD, HAMMER_TYPE:JUMPING_HAMMER}
         self.duck_img = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD, HAMMER_TYPE:DUCKING_HAMMER }
         self.power_up_time = 0
-        self.hammer_hits = 0
+        self.power_up_hammer = 0
 
 
     def process_event(self, user_input):
@@ -92,5 +92,5 @@ class Dinosaur(Sprite):
         elif power_up_type == HAMMER_TYPE:
             self.type = HAMMER_TYPE
             self.power_up_time = self.POWER_UP_TIME
-
+            self.power_up_hammer = 1
             

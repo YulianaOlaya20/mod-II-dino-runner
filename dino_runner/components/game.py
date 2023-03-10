@@ -36,7 +36,6 @@ class Game:
         self.screen.blit(score, score_rect)
 
     def show_deaths(self):
-
         if self.playing == False:
             self.deaths += 1
 
@@ -46,6 +45,13 @@ class Game:
         wallpaper_rect = ICON.get_rect()
         wallpaper_rect.topleft = (510, 170) 
         self.screen.blit(ICON, wallpaper_rect)
+
+        cloud_rect = CLOUD.get_rect()
+        cloud_rect.topleft = (200, 170) 
+        self.screen.blit(CLOUD, cloud_rect)
+        cloud_rect = CLOUD.get_rect()
+        cloud_rect.topleft = (850, 450) 
+        self.screen.blit(CLOUD, cloud_rect)
 
         text, text_rect = get_centered_message('START!')
         death, death_rect = get_score_deaths(self.deaths)
@@ -77,6 +83,7 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+
 
     def update(self):
         user_input = pygame.key.get_pressed()

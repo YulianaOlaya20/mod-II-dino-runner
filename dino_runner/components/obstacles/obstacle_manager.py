@@ -1,9 +1,10 @@
 import random
+from dino_runner.components.obstacles.cloud import Cloud
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.large_cactus import LargeCactus
 from dino_runner.components.obstacles.small_catus import SmallCactus
 
-from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, SHIELD_TYPE, HAMMER_TYPE
+from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, SHIELD_TYPE, HAMMER_TYPE, CLOUD
 
 class ObstacleManager:
 
@@ -19,7 +20,7 @@ class ObstacleManager:
             3: LargeCactus(LARGE_CACTUS[0]),  
             4: LargeCactus(LARGE_CACTUS[1]),    
             5: LargeCactus(LARGE_CACTUS[2]),   
-            6: Bird(BIRD[0]), 
+            6: Bird(BIRD[0]),
         }
 
         obstacle = obstacles_types[random.randint(0, 6)]
@@ -32,19 +33,16 @@ class ObstacleManager:
 
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
+
             if game.player.type == SHIELD_TYPE:
                 print("Shield activated, no damage received")
+            elif game.player.type == HAMMER_TYPE:
+                if game.player.dino_rect.colliderect(obstacle.rect):
+                    obstacle.destroyed = True
             elif game.player.dino_rect.colliderect(obstacle.rect):
                 game.playing = False
                 break
 
-            elif game.player.type == HAMMER_TYPE and not obstacle.destroyed and game.player.dino_rect.colliderect(obstacle.rect):
-                obstacle.destroyed = True
-                game.score += 1
-            elif game.player.dino_rect.colliderect(obstacle.rect):
-                game.playing = False
-                breakaying = False
-                break
 
     def draw(self, screen):
         for obstacle in self.obstacles:

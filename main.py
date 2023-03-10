@@ -5,5 +5,6 @@ if __name__ == "__main__":
     while True:
         if game.playing == False:
             game.show_menu()
+            
 
     
