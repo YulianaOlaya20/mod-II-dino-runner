@@ -93,4 +93,4 @@ class Dinosaur(Sprite):
         elif power_up_type == HAMMER_TYPE:
             self.type = HAMMER_TYPE
             self.power_up_time = self.POWER_UP_TIME
-            self.power_up_hammer = 1
+    
