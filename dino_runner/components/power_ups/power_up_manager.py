@@ -5,7 +5,6 @@ from dino_runner.utils.constants import DEFAULT_TYPE, SHIELD, SHIELD_TYPE, HAMME
 
 class PowerUpManager:
     POWER_UP_PROBABILITY = 2
-    HEART_PROBABILITY = 2
 
     def __init__(self):
         self.power_ups = []
