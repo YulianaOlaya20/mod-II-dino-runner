@@ -35,6 +35,7 @@ class ObstacleManager:
 
             if game.player.type == SHIELD_TYPE:
                 print("Shield activated, no damage received")
+                
             elif game.player.type == HAMMER_TYPE:
                 if game.player.dino_rect.colliderect(obstacle.rect):
                     obstacle.destroyed = True

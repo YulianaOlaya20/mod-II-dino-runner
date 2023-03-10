@@ -7,7 +7,7 @@ from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 from dino_runner.utils.constants import BG, ICON, INITIAL_GAME_SPEED, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
-from dino_runner.utils.text_utils import get_centered_message, get_score_element, get_score_deaths
+from dino_runner.utils.text_utils import get_centered_message, get_score_element, get_score_deaths 
 
 
 class Game:
@@ -27,7 +27,6 @@ class Game:
         self.points = 0
         self.deaths = 0
 
-
     def show_score(self):
         self.points += 1
         if self.points % 100 == 0:
@@ -39,9 +38,9 @@ class Game:
         if self.playing == False:
             self.deaths += 1
 
+
     def show_menu(self):
         self.screen.fill((255,255,255))
-
         wallpaper_rect = ICON.get_rect()
         wallpaper_rect.topleft = (510, 170) 
         self.screen.blit(ICON, wallpaper_rect)
@@ -55,6 +54,7 @@ class Game:
 
         text, text_rect = get_centered_message('START!')
         death, death_rect = get_score_deaths(self.deaths)
+
         self.screen.blit(death, death_rect)
         self.screen.blit(text, text_rect)
         pygame.display.update()
@@ -76,6 +76,7 @@ class Game:
         pygame.time.delay(1000)
         self.obstacle_manager.remove_obstacles()
         self.power_up_manager.remove_power_ups()
+        self.start_time = pygame.time.get_ticks()
         self.game_speed = INITIAL_GAME_SPEED
         self.points = 0
 
